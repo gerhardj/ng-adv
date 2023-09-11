@@ -35,7 +35,7 @@
     this.sideNavVisible.next(visible);
   }
   ```
-- Add a Material Sidenav to app.component.html    
+- Add a Material SideNav to app.component.html    
 
   ```html
   <div class="grid">

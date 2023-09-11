@@ -1,5 +1,7 @@
 # Food App Project - Components & Forms
 
+- Convert the project to bootstrap and use standalone components
+
 - Refactor `food-edit.component` to be implemented as a Reactive Form using FormBuilder.
 
     Note: You can take the following components as a [reference](https://github.com/arambazamba/ng-adv/tree/main/demos/02-components-forms/component-forms/src/app/demos/samples/forms-builder):
@@ -9,66 +11,6 @@
     ![edit-form](_images/edit-form.png)
 
     > Note: You can take the following components as a [reference](https://github.com/arambazamba/ng-adv/tree/main/demos/02-components-forms/component-forms/src/app/demos/samples/validaton-intro):
-
-
-- Convert the project to bootstrap and use standalone components
-
-## Guide
-
--   Add ReactiveFormsModule to app.module.ts
-
--   Inject FormBuilder to the constructor of `food-edit.component.ts` and initialize the `foodForm : FormGroup`. Add a `minLength` validator to the name field and a min validator to the price field.
-
--   Initialize `@Input()` food with a `new FoodItem()` in `food-edit.component.ts`
-
--   Add a readonly form field for the id in `food-edit.component.html`
-
--   Replace the ngModel bindings with formControlName bindings in `food-edit.component.html`
-
--   Add a from tag below the mat-card-content tag in `food-edit.component.html` and attach a
-
--   Add mat-error elements to display validation errors in `food-edit.component.html`
-
--   Add the following ngOnChanges method to `food-edit.component.ts`
-
-    ```typescript
-    ngOnChanges(changes: SimpleChanges): void {
-    if (changes['food']) {
-      this.foodForm.setValue(changes['food'].currentValue);
-    }
-  }
-    ```
-
--   Implement the onSubmit method in food-edit.component.ts
-
-    ```typescript
-    saveForm(): void {
-      console.log('food to save', this.foodForm.value);
-      this.onFoodSaved.emit(this.foodForm.value);
-    }
-    ```
-
--   Add the following `saveFood-method`to food-container.component.ts:
-
-    ```typescript
-    saveFood(f: FoodItem) {
-        let arr = [...this.food]
-        if (f.id == 0) {
-            this.fs.addFood(f).subscribe((food) => {
-            arr.push(food);
-            this.food = arr;
-            this.selected = undefined;
-            });
-        } else {
-            this.fs.updateFood(f).subscribe((food) => {
-            const index = arr.findIndex((f) => f.id === food.id);
-            arr[index] = food;
-            this.food = arr;
-            this.selected = undefined;
-            });
-        }
-    }
-    ```
 
 ## Convert the project to bootstrap and use standalone components
 
@@ -127,3 +69,61 @@
     - app-routing.module.ts
     - food.module.ts
     - food-routing.module.ts    
+    
+## Refactor `food-edit.component` to be implemented as a Reactive Form using FormBuilder
+
+-   Add ReactiveFormsModule to app.module.ts
+
+-   Inject FormBuilder to the constructor of `food-edit.component.ts` and initialize the `foodForm : FormGroup`. Add a `minLength` validator to the name field and a min validator to the price field.
+
+-   Initialize `@Input()` food with a `new FoodItem()` in `food-edit.component.ts`
+
+-   Add a readonly form field for the id in `food-edit.component.html`
+
+-   Replace the ngModel bindings with formControlName bindings in `food-edit.component.html`
+
+-   Add a from tag below the mat-card-content tag in `food-edit.component.html` and attach a
+
+-   Add mat-error elements to display validation errors in `food-edit.component.html`
+
+-   Add the following ngOnChanges method to `food-edit.component.ts`
+
+    ```typescript
+    ngOnChanges(changes: SimpleChanges): void {
+    if (changes['food']) {
+      this.foodForm.setValue(changes['food'].currentValue);
+    }
+  }
+    ```
+
+-   Implement the onSubmit method in food-edit.component.ts
+
+    ```typescript
+    saveForm(): void {
+      console.log('food to save', this.foodForm.value);
+      this.onFoodSaved.emit(this.foodForm.value);
+    }
+    ```
+
+-   Add the following `saveFood-method`to food-container.component.ts:
+
+    ```typescript
+    saveFood(f: FoodItem) {
+        let arr = [...this.food]
+        if (f.id == 0) {
+            this.fs.addFood(f).subscribe((food) => {
+            arr.push(food);
+            this.food = arr;
+            this.selected = undefined;
+            });
+        } else {
+            this.fs.updateFood(f).subscribe((food) => {
+            const index = arr.findIndex((f) => f.id === food.id);
+            arr[index] = food;
+            this.food = arr;
+            this.selected = undefined;
+            });
+        }
+    }
+    ```
+

@@ -97,7 +97,7 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   : [];
 ```
 
-Create a sidenav.facades.ts which is responsible to provide the responsive sidenav container. We decided to use a facades to encapsulate the BreakpointObserver logic, and thereby keep the component as simple as possible. 
+Create a sidenav.facades.ts which is responsible to provide the responsive sideNav container. We decided to use a facades to encapsulate the BreakpointObserver logic, and thereby keep the component as simple as possible. 
 
 ```typescript
 @Injectable({

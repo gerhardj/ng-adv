@@ -1,10 +1,10 @@
 # Building an Reusable Angular Material Theme
 
-- Material Themeing Overview
+- Material Theming Overview
 - Define Primary, Accent and Warning Colors
 - Building a Reusable Material Theme
 - Define Alternative Themes
-- Use Fore- and Backcolor
+- Use Fore- and Back-color
 - Use Theme Mixins
 - Theming Custom Components
 - Supporting Light- & Dark-Themes on Windows 10 and Mac OS

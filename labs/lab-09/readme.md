@@ -10,13 +10,13 @@ chrome://flags/#allow-insecure-localhost
 
 After creating your free account copy ngrok.exe to a folder of your choice (`C:\Program Files\ngrok`) and set a path variable to it.
 
-Next grap the auth token from your ngrok user info and add it to your machine config:
+Next grab the auth token from your ngrok user info and add it to your machine config:
 
 ```
 ngrok config add-authtoken 3XjdFZdf4PgB2898gcdbu_4Rukvv4BYtU1w7WaTZE75
 ```
 
-A skills service container is available at dockerhub: 
+A skills service container is available at DockerHub: 
 
 ```
 docker pull arambazamba/skillsservice

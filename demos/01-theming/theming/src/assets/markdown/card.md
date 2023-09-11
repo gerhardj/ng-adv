@@ -17,4 +17,4 @@ $theme: mat.define-light-theme($primary, $accent, $warn);
   --color-fg: #{mat-color($fg)};
   --color-bg: #{mat-color($bg)};
 ```
-- Examin `mat-card` overrides in `mat-overrides.scss`
+- Examine `mat-card` overrides in `mat-overrides.scss`

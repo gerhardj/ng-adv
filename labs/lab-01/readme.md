@@ -132,11 +132,11 @@
 
 Angular Material is already installed in the project. You can use the [Angular Material Theming Guide](https://material.angular.io/guide/theming) to create a custom theme.
 
-Remove the old theme from the `styles.scss` file:
+Remove the old theme from the `angular.json` file:
 
 ```json
 "styles": [
-   "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+   "./node_modules/@angular/material/prebuilt-themes/purple-green.css.css",
 ```   
 
 Create a theme folder in the `src-folder` of the project and include it in the `angular.json` file:

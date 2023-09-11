@@ -8,7 +8,7 @@ Tools Setup:
 code --install-extension wallabyjs.wallaby-vscode
 ```
 
-- Get your [Wallaby-Trial-Key](https://wallabyjs.com/download/) and apply your Licence key press `F1 -> Wallaby.js: Manage Licence Key` and enter your key.
+- Get your [Wallaby-Trial-Key](https://wallabyjs.com/download/) and apply your Licence key press `F1 -> Wallaby.js: Manage License Key` and enter your key.
 
 - Activate Wallaby using `F1 -> Wallaby.js: Start`
 

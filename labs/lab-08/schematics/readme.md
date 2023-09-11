@@ -115,7 +115,7 @@ Scaffold a new Schematic that generates a Component - just like `ng g c NAME` do
 schematics blank --name create-demo-comp
 ```
 
-Add the folowing code to `create-demo-comp/index.ts`
+Add the following code to `create-demo-comp/index.ts`
 
 ```javascript
 export function createDemoComp(_options: any): Rule {
@@ -179,7 +179,7 @@ cd .\sandbox\
 ng g ng-schematics-intro:create-file --greeting Szia --name Emese
 ```
 
-Add untility scripts in `package.json` - optional:
+Add utility scripts in `package.json` - optional:
 
 ```json
   "scripts": {

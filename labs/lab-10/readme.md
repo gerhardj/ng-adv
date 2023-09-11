@@ -43,7 +43,7 @@ npm run dev:ssr
 
 ## Use Prerendering
 
-Create `routes.txt` in the root folder. It defines routes to prerender:
+Create `routes.txt` in the root folder. It defines routes to pre-render:
 
 ```
 /food/1
@@ -56,4 +56,4 @@ Create prerendered pages:
 ng run foodlist-ssr:prerender --routes-file routes.txt
 ```
 
-Examine the `dist/foodlist-ssr/browser/food` folder. You will find the prerendered pages.
+Examine the `dist/foodlist-ssr/browser/food` folder. You will find the pre-rendered pages.

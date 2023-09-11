@@ -2,7 +2,7 @@
 
     ```html
     <img ngSrc="assets/images/{{ img }}" width="600" height="300" 
-        fetchpriority="high" alt="Moduel Image" />
+        fetchpriority="high" alt="Module Image" />
     ```
 
 - Use Lighthouse to share performance gains compared with the original `src`-tag.

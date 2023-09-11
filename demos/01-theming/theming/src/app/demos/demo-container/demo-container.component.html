@@ -33,7 +33,9 @@
       <div class="gdLoading">
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading | async"></mat-progress-bar>
       </div>
-      <div class="gdWorkbench"><router-outlet></router-outlet></div>
+      <div class="gdWorkbench">
+        <router-outlet></router-outlet>
+      </div>
       <div class="gdEditor" *ngIf="showMdEditor | async">
         <app-markdown-editor></app-markdown-editor>
       </div>

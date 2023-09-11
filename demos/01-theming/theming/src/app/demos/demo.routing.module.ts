@@ -15,7 +15,6 @@ const demoRoutes: Routes = [
   {
     path: '',
     component: DemoContainerComponent,
-
     children: [
       { path: 'style-inheritance', component: StyleInheritanceComponent },
       { path: 'table', component: TableComponent },

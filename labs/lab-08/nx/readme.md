@@ -27,7 +27,7 @@ nx serve --project tutorial-app -o
 nx serve tutorial-app -o
 ```
 
-> Note: Keep the tutorital-app running in the background, just like you would do when using Angular CLI.
+> Note: Keep the tutorial-app running in the background, just like you would do when using Angular CLI.
 
 Test the app using Jest (default)
 
@@ -59,7 +59,7 @@ npx nx graph --watch
 
 ### Split component
 
-Add a split component. Notice that Nx registeres the component in the module 
+Add a split component. Notice that Nx registers the component in the module 
 
 ```typescript
 nx g @nrwl/angular:component uxSplit --project ux-controls --export --selector ux-split
@@ -273,7 +273,7 @@ Add a second app used for dependency graph later on:
 nx generate @nrwl/angular:app ng-otherapp --routing --style=scss --standaloneApi false
 ```
 
-Repate the steps in the second project in order to see a Dependency Graph where the button is used in two projects
+Repeat the steps in the second project in order to see a Dependency Graph where the button is used in two projects
 
 ```
 nx dep-graph
