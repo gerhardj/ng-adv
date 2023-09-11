@@ -8,13 +8,16 @@ import {
   OnChanges,
 } from '@angular/core';
 import { FoodItem } from 'src/app/food/food.model';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-food-list',
-  templateUrl: './food-list.component.html',
-  styleUrls: ['./food-list.component.scss'],
+    selector: 'app-food-list',
+    templateUrl: './food-list.component.html',
+    styleUrls: ['./food-list.component.scss'],
+    standalone: true,
+    imports: [MatCardModule, MatTableModule],
 })
 export class FoodListComponent implements OnChanges {
   @Input() food: FoodItem[] | null = [];
