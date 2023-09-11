@@ -1,0 +1,48 @@
+{
+  "food": [
+    {
+      "id": 1,
+      "name": "Butter Chicken",
+      "price": 9,
+      "calories": 1200
+    },
+    {
+      "id": 2,
+      "name": "Curry Wurst",
+      "price": 2.7,
+      "calories": 730
+    },
+    {
+      "id": 3,
+      "name": "Wiener Schnitzel",
+      "price": 8.3,
+      "calories": 600
+    },
+    {
+      "id": 4,
+      "name": "Hellö",
+      "price": 1,
+      "calories": 2
+    },
+    {
+      "id": 5,
+      "name": "Bob",
+      "price": 1234,
+      "calories": 5678
+    }
+  ],
+  "top-links": [
+    {
+      "title": "Home",
+      "url": "/"
+    },
+    {
+      "title": "Foodüüüü",
+      "url": "/food"
+    },
+    {
+      "title": "About",
+      "url": "/about"
+    }
+  ]
+}
