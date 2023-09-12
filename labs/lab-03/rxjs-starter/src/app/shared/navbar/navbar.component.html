@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
+    <mat-icon *ngIf="(ms.sideNavPosition | async) === 'over'" (click)="ms.toggleMenuVisibility()">menu</mat-icon>
     <div *ngFor="let item of items | async" [routerLink]="[item.url]">
       {{ item.title }}
     </div>

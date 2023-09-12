@@ -1,11 +1,19 @@
-<div>
-  <app-navbar></app-navbar>
-</div>
-<div class="mainrow">
-  <div class="sidebar">
-    <app-sidebar></app-sidebar>
+<div class="grid">
+  <div class="gd-navbar">
+    <app-navbar></app-navbar></div>
+  <div class="gd-loading">
+    <!-- <app-loading *ngIf="isLoading | async"></app-loading> -->
   </div>
-  <div class="main">
-    <router-outlet></router-outlet>
+  <div class="gd-mainrow">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav class="sidenav"
+      [opened]="ms.sideNavVisible | async"
+      [mode]="(ms.sideNavPosition | async)!">
+        <app-sidebar></app-sidebar>
+      </mat-sidenav>
+      <mat-sidenav-content [ngStyle]="getWorbenchStyle()">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
 </div>
