@@ -7,7 +7,7 @@
   <div class="gd-mainrow">
     <mat-sidenav-container>
       <mat-sidenav #sidenav class="sidenav"
-      [opened]="ms.sideNavVisible | async"
+      [opened]="ms.getSideNavVisible() | async"
       [mode]="mode">
         <app-sidebar></app-sidebar>
       </mat-sidenav>

@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 import { SideNavService } from '../sidenav/sidenav.service';
 import { NavbarService } from './navbar.service';
+import { SideNavFacade } from '../sidenav/sidenav.facade';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,7 @@ import { NavbarService } from './navbar.service';
 })
 export class NavbarComponent {
   ns = inject(NavbarService);
-  nav = inject(SideNavService);
+  nav = inject(SideNavFacade);
   items = this.ns.getTopItems();
 
   toggleMenu() {

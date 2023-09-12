@@ -7,6 +7,7 @@ import { LoadingService } from './shared/loading/loading.service';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SideNavService } from './shared/sidenav/sidenav.service';
+import { SideNavFacade } from './shared/sidenav/sidenav.facade';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +19,14 @@ import { SideNavService } from './shared/sidenav/sidenav.service';
 export class AppComponent {
   title = 'Food App';
   mode: MatDrawerMode = 'side';
-  ms = inject(SideNavService);
+  ms = inject(SideNavFacade);
+  // ms2 = inject(SideNavFacade)
   ls = inject(LoadingService);
   changeDetector = inject(ChangeDetectorRef);
   isLoading = this.ls.getLoading();
 
   constructor() {
-    this.ms.sideNavPosition.subscribe((currentMode) => { this.mode = currentMode });
+    this.ms.getSideNavPosition().subscribe((currentMode) => { this.mode = currentMode });
   }
 
   ngAfterContentChecked(): void {
@@ -33,7 +35,7 @@ export class AppComponent {
 
   getWorbenchStyle() {
     let result = {};
-    this.ms.sideNavVisible.subscribe((visible) => {
+    this.ms.getSideNavVisible().subscribe((visible) => {
       result = visible
         ? {
           'padding-left': '10px',
