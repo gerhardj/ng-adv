@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <app-food-list
-  [food]="food"
+  [food]="food | async"
   (onFoodSelected)="selectFood($event)"
 ></app-food-list>
 

@@ -2,7 +2,7 @@
   "food": [
     {
       "id": 1,
-      "name": "Butter Chicken",
+      "name": "Butter ",
       "price": 9,
       "calories": 1200
     },
@@ -17,6 +17,18 @@
       "name": "Blini with Salmon",
       "price": 8.3,
       "calories": 600
+    },
+    {
+      "id": 4,
+      "name": "foo bar ",
+      "price": 14,
+      "calories": 15
+    },
+    {
+      "id": 5,
+      "name": "",
+      "price": 0,
+      "calories": 0
     }
   ],
   "top-links": [

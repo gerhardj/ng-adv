@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -6,6 +6,7 @@ import { FoodItem } from 'src/app/food/food.model';
 import { FoodEditComponent } from '../food-edit/food-edit.component';
 import { FoodListComponent } from '../food-list/food-list.component';
 import { FoodService } from '../food.service';
+import { FoodEntityService } from '../state/food-entity.service';
 
 @Component({
   selector: 'app-food-container',
@@ -16,19 +17,17 @@ import { FoodService } from '../food.service';
     MatToolbarModule,
     MatButtonModule,
     FoodListComponent,
-    NgIf,
     FoodEditComponent,
+    CommonModule
   ],
 })
 export class FoodContainerComponent implements OnInit {
-  fs = inject(FoodService);
-  food: FoodItem[] = [];
+  fs = inject(FoodEntityService);
+  food = this.fs.entities$;
   selected: FoodItem | undefined = undefined;
 
   ngOnInit(): void {
-    this.fs.getFood().subscribe((food) => {
-      this.food = food;
-    });
+    this.fs.getAll();
   }
 
   selectFood(f: FoodItem) {
@@ -40,21 +39,11 @@ export class FoodContainerComponent implements OnInit {
   }
 
   saveFood(f: FoodItem) {
-    let arr = [...this.food]
 
     if (f.id == 0) {
-      this.fs.addFood(f).subscribe((food) => {
-        arr.push(food);
-        this.food = arr;
-        this.selected = undefined;
-      });
+      this.fs.add(f);
     } else {
-      this.fs.updateFood(f).subscribe((food) => {
-        const index = arr.findIndex((f) => f.id === food.id);
-        arr[index] = food;
-        this.food = arr;
-        this.selected = undefined;
-      });
+      this.fs.update(f);
     }
   }
 }
