@@ -2,7 +2,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Injectable, inject } from "@angular/core";
 import { MatDrawerMode } from "@angular/material/sidenav";
 import { Store } from "@ngrx/store";
-import { tap } from "rxjs";
+import { distinctUntilChanged, distinctUntilKeyChanged, tap } from "rxjs";
 import { appActions } from "src/app/state/app.actions";
 import { AppState, appState } from "src/app/state/app.state";
 
@@ -17,6 +17,7 @@ import { AppState, appState } from "src/app/state/app.state";
       this.breakpointObserver
         .observe([Breakpoints.XSmall, Breakpoints.Small])
         .pipe(
+          distinctUntilKeyChanged('matches'),
           tap((matchesBreakpoints) => {
             console.log("matchesBreakpoint: ", matchesBreakpoints.matches);
             const position: MatDrawerMode = matchesBreakpoints.matches ? 'over' : 'side';
