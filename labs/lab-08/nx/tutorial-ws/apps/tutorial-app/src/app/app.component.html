@@ -1,3 +1,19 @@
 <div>
     <h3>First Nx Monorepo App</h3>
-</div>
+  </div>
+  <ux-split>
+    <div class="title">The Split</div>
+    <div class="main">I don't like the green watermelons</div>
+    <div class="sidebar">
+      <ux-button
+          [icon]="'keyboard_arrow_right'"
+          [label]="'Go Back'">
+          [disabled]="true"
+        </ux-button>
+        <ux-button
+          [label]="'Bearbeiten'"
+          [icon]="'edit'"
+          (onClicked)="handleClick($event)"
+        ></ux-button>
+    </div>
+  </ux-split>

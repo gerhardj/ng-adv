@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tutorial-app';
+
+  handleClick(evt: any) {
+    console.log('msg from the button', evt);
+  }
 }
