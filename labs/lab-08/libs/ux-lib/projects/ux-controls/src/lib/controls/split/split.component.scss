@@ -1,0 +1,25 @@
+.maingrid {
+    display: grid;
+    grid-template-rows: 60px auto;
+    grid-template-columns: auto 180px;
+    grid-template-areas: "title title" "main sidebar";
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .title{
+    grid-area: title;
+    background-color: lavender;
+  }
+  
+  .main{
+    padding: 1rem;
+    grid-area: main;
+    background-color: yellow;
+  }
+  
+  .sidebar{
+    padding: 1rem;
+    grid-area: sidebar;
+    background-color: lightblue;
+  }
