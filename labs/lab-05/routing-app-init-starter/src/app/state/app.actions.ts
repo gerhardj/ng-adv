@@ -8,6 +8,7 @@ export const appActions = createActionGroup(
       toggleSideNav: emptyProps(),
       changeSideNavVisible: props<{ visible: boolean }>(),
       changeSideNavPosition: props<{ position: MatDrawerMode }>(),
+      redirectToError: emptyProps(),
     },
   }
 );
