@@ -4,6 +4,6 @@ import { AboutComponent } from './about/about.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
-    { path: "food", loadComponent: () => import('./food/food-container/food-container.component').then(m => m.FoodContainerComponent) },
+    { path: "food", data: {preload: true}, loadComponent: () => import('./food/food-container/food-container.component').then(m => m.FoodContainerComponent) },
     { path: "about", component: AboutComponent }
 ];

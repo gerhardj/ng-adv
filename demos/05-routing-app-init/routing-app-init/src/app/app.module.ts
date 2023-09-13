@@ -69,7 +69,21 @@ import { AuthModule } from './auth/auth.module';
     {
       provide: APP_INITIALIZER,
       useValue: () => {
-        console.log('App init running');
+        console.log('App init 1 running');
+      },
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useValue: () => {
+        console.log('App init 2 running');
+      },
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useValue: () => {
+        console.log('App init 3 running');
       },
       multi: true,
     },
