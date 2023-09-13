@@ -5,7 +5,7 @@
   grid-template-areas:
     "title title"
     "main sidebar";
-  gap: 0.5rem;
+  gap: var(--gap-small);
   min-height: 300px;
   border: 1px solid var(--color-primary);
 }

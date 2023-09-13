@@ -31,8 +31,8 @@ import { RouterBindingComponent } from './samples/router-binding/router-binding.
 import { RoutingTargetComponent } from './samples/routing/routing-target/routing-target.component';
 import { RoutingComponent } from './samples/routing/routing/routing.component';
 import { DemosEffects } from './state/demos.effects';
-import { demoReducer, demosFeatureKey } from './state/demos.reducer';
 import { NgrxRouterActionsComponent } from './samples/ngrx-router-actions/ngrx-router-actions.component';
+import { demoState } from './state/demos.state';
 
 const demoRoutes: Routes = [
   {
@@ -148,7 +148,7 @@ const demoRoutes: Routes = [
     MarkdownRendererModule,
     MarkdownEditorModule,
     SharedModule,
-    StoreModule.forFeature(demosFeatureKey, demoReducer),
+    StoreModule.forFeature(demoState),
     EffectsModule.forFeature([DemosEffects]),
     FormattingModule,
   ],

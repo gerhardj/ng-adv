@@ -4,6 +4,7 @@ import { ThemeService } from '../theme/theme.service';
 import { SidebarActions } from './sidebar.actions';
 import { SidePanelService } from './sidepanel.service';
 import { SideNavService } from '../sidenav/sidenav.service';
+import { StatefulDemoService } from 'src/app/demos/samples/statefull/stateful-demo.service';
 
 @Component({
   selector: 'app-side-panel',
@@ -14,6 +15,7 @@ export class SidePanelComponent {
   sns = inject(SnackbarService);
   eb = inject(SidePanelService);
   ts = inject(ThemeService);
+  ds = inject(StatefulDemoService);
   editorDisplayed = false;
   sidenav = inject(SideNavService);
   icon = "create";
@@ -38,5 +40,16 @@ export class SidePanelComponent {
 
   showUpload() {
     this.sns.displayAlert('Info', 'Not implemented - just a Demo');
+  }
+
+  addDemo() {
+    const newDemo = {
+      "id": 27,
+      "url": "langfeatures",
+      "title": "Language Features",
+      "sortOrder": 0,
+      "visible": true,
+    };
+    this.ds.addDemo(newDemo);
   }
 }

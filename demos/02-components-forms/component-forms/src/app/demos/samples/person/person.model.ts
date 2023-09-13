@@ -1,9 +1,9 @@
 export class Person {
-  id: number = 0;
-  age: number = 0;
-  name: string = '';
-  email: string = '';
-  wealth: string = '';
+  id = 0;
+  age = 0;
+  name = '';
+  email = '';
+  wealth = '';
   gender: 'male' | 'female' | 'not set' = 'not set';
   lastname?: string;
   married?: boolean;
@@ -12,9 +12,9 @@ export class Person {
 }
 
 export class Address {
-  street: string = '';
-  city: string = '';
-  postalCode: string = '';
+  street = '';
+  city = '';
+  postalCode = '';
 }
 
 export const wealthOptsValues = ['poor', 'rich', 'middle_class'];

@@ -20,9 +20,9 @@ export const appState = createFeature({
       ...state,
       sideNavVisible: !state.sideNavVisible,
     })),
-    on(appActions.changeSideNavVisible, (state) => ({
+    on(appActions.changeSideNavVisible, (state, action) => ({
       ...state,
-      sideNavVisible: !state.sideNavVisible,
+      sideNavVisible: action.visible
     })),
     on(appActions.changeSideNavPosition, (state, action) => ({
       ...state,

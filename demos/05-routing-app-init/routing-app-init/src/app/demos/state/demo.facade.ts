@@ -2,9 +2,9 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { DemoItem } from '../demo-base/demo-item.model';
-import { getAllDemos, getFilter, getSelected, hasLoaded } from './demo.selectors';
+// import { getAllDemos, getFilter, getSelected, hasLoaded } from './demo.selectors';
 import { DemoActions } from './demos.actions';
-import { DemoState } from './demos.reducer';
+import { DemoState, demoState, getAllDemos } from './demos.state';
 
 @Injectable({
   providedIn: 'root',
@@ -20,15 +20,15 @@ export class DemoFacade {
   }
 
   hasLoaded() {
-    return this.store.select(hasLoaded).pipe(take(1));
+    return this.store.select(demoState.selectLoaded).pipe(take(1));
   }
 
   getDemos() {
-    return this.store.select(getAllDemos)
+    return this.store.select(getAllDemos);
   }
 
   getSelectedDemo() {
-    return this.store.select(getSelected);
+    return this.store.select(demoState.selectSelected);
   }
 
   deleteDemo(item: DemoItem) {
@@ -52,6 +52,6 @@ export class DemoFacade {
   }
 
   getFilter() {
-    return this.store.select(getFilter);
+    return this.store.select(demoState.selectFilter);
   }
 }

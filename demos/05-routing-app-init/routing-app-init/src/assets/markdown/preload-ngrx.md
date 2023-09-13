@@ -1,24 +1,24 @@
-Data preloading using @ngrx/data in `skills.module.ts`. Examine `skill.resolver.ts` and `skill.resolver.ts`. Data is loaded only once:
+Data preloading using @ngrx/data in `skills.module.ts`. Examine `skills.resolver.ts`:
 
 ```typescript
-@Injectable({
-  providedIn: 'root',
-})
-export class SkillsResolver implements Resolve<boolean> {
-  constructor(private skillsService: SkillsEntityService) {}
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    return this.skillsService.loaded$.pipe(
-      tap((loaded) => {
-        if (!loaded) {
-          this.skillsService.getAll();
-        }
-      }),
-      filter((loaded) => !!loaded),
-      first()
-    );
+export const skillsResolver: ResolveFn<any> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> => {
+  const service = inject(SkillsEntityService);
+  console.log('resolver');
+  switch (state.url) {
+    case '/skills':
+      return service.entities$.pipe(
+        take(1),
+        mergeMap((skillsData) => {
+          if (skillsData) {
+            return of(skillsData);
+          }
+          else {
+            return EMPTY;
+          }
+        }),
+      );
+    default:
+      return EMPTY;
   }
-}
+};
 ```

@@ -21,5 +21,4 @@
 
 ## Optional tutorial with step by step guide
 
-- ngrx-skills-entity-adapter
 - ngrx-data with EntityService

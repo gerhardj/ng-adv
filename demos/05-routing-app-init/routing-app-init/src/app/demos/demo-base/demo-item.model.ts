@@ -1,7 +1,7 @@
 export class DemoItem {
-  id: number = 0;
-  url: string = '';
-  title: string = '';
+  id = 0;
+  url = '';
+  title = '';
   sortOrder = 0;
   visible = true;
 }

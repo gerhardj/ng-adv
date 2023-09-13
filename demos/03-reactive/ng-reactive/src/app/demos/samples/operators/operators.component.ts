@@ -14,7 +14,6 @@ import {
 import { Voucher } from '../../vouchers/voucher.model';
 import { VouchersService } from '../../vouchers/voucher.service';
 import { Person } from './person';
-import { sum } from 'lodash';
 
 @Component({
   selector: 'app-operators',

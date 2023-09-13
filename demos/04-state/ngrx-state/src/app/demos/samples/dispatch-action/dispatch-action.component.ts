@@ -10,6 +10,7 @@ import { appActions } from '../../../state/app.actions';
 })
 export class DispatchActionComponent {
   store = inject(Store<AppState>);
+
   isMockAuthenticated = this.store.select(appState.selectIsMockAuthenticated);
 
   toggleAuth() {

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { combineLatest } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { DemoService } from '../../demo-base/demo.service';

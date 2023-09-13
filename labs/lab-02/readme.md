@@ -20,13 +20,15 @@
 
     ```bash
     ng g @angular/core:standalone
-    ```
+    ```    
 
     - On the first run select: Convert all components, directives and pipes to standalone
 
     - On the second run select: Bootstrap the application using standalone APIs
 
-- Open `main.ts` and use `Visual Studio Code - Organize Imports` to clean up the imports
+    >Note: When converting projects `app.routes.ts` and `app.config.ts` are not created automatically. You have to do this manually.
+
+- Open `main.ts` and use `F1: Visual Studio Code - Organize Imports` to clean up the imports
 
 - To add the routing configuration create a new file `app/app.routes.ts` and add the following content:
 
@@ -42,7 +44,7 @@
     ];
     ```
 
-- Add an `app.config.ts` to provide the app configuration like providers, ...
+- Add an `app/app.config.ts` to provide the app configuration like providers, ...
 
     ```typescript
     export const appConfig: ApplicationConfig = {
@@ -72,9 +74,9 @@
     
 ## Refactor `food-edit.component` to be implemented as a Reactive Form using FormBuilder
 
--   Add ReactiveFormsModule to app.module.ts
+-   Import `ReactiveFormsModule` to `food-edit.component.ts`
 
--   Inject FormBuilder to the constructor of `food-edit.component.ts` and initialize the `foodForm : FormGroup`. Add a `minLength` validator to the name field and a min validator to the price field.
+-   Inject FormBuilder to `food-edit.component.ts` using the `inject()` token and initialize the `foodForm : FormGroup`. Add a `minLength` validator to the name field and a min validator to the price field.
 
 -   Initialize `@Input()` food with a `new FoodItem()` in `food-edit.component.ts`
 

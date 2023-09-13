@@ -1,5 +1,5 @@
 export class Skill {
-  id: number = 0;
-  name: string = '';
-  completed: boolean = false;
+  id = 0;
+  name = '';
+  completed = false;
 }

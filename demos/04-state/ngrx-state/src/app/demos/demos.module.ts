@@ -28,13 +28,12 @@ import { FeatureModuleStateComponent } from './samples/feature-module-state/feat
 import { NgrxDataComponent } from './samples/ngrx-data/ngrx-data.component';
 import { NgrxEntityComponent } from './samples/ngrx-entity/ngrx-entity.component';
 import { DemosEffects } from './state/demos.effects';
-import { demoReducer, demosFeatureKey } from './state/demos.state';
 import { FormattingModule } from '../shared/formatting/formatting.module';
 import { NgrxSignalsComponent } from './samples/ngrx-signals/ngrx-signals.component';
 import { CreateFeatureComponent } from './samples/create-feature/create-feature.component';
 import { DispatchActionComponent } from './samples/dispatch-action/dispatch-action.component';
 import { RespondToEffectsComponent } from './samples/respond-to-effects/respond-to-effects.component';
-import { CustomersModule } from '../customers/customers.module';
+import { demoState } from './state/demos.state';
 
 @NgModule({
   declarations: [
@@ -72,9 +71,8 @@ import { CustomersModule } from '../customers/customers.module';
     SharedModule,
     MarkdownEditorModule,
     FormattingModule,
-    StoreModule.forFeature(demosFeatureKey, demoReducer),
+    StoreModule.forFeature(demoState),
     EffectsModule.forFeature([DemosEffects]),
-    CustomersModule
   ],
   providers: [],
 })

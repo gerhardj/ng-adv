@@ -5,13 +5,7 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div
-      cdkDropList
-      (cdkDropListDropped)="drop($event)"
-      fxLayout="column"
-      fxLayoutGap="5px"
-      class="list"
-    >
+    <div column class="list">
       <app-demo-row
         *ngFor="let d of view$ | async"
         [item]="d"

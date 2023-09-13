@@ -20,7 +20,7 @@ export class ListComponent {
   filter = new FormControl<string>('');
 
   // Stream to bind the view to
-  demos$ = combineLatest([
+  vm$ = combineLatest([
     this.demosData$,
     this.filter.valueChanges.pipe(startWith('')),
   ]).pipe(
@@ -34,7 +34,7 @@ export class ListComponent {
   );
 
   drop(event: CdkDragDrop<DemoItem[]>) {
-    this.demos$.subscribe((arr) => {
+    this.vm$.subscribe((arr) => {
       moveItemInArray(arr, event.previousIndex, event.currentIndex);
       this.changeSortOrder(arr);
     });

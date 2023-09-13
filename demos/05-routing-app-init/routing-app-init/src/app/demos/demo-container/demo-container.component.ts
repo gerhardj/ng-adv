@@ -1,54 +1,42 @@
-import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
 import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
+import { SideNavFacade } from 'src/app/state/sidenav.facade';
 import { environment } from 'src/environments/environment';
 import { LoadingService } from '../../shared/loading/loading.service';
-import { SideNavService } from '../../shared/sidenav/sidenav.service';
-import { DemoService } from '../demo-base/demo.service';
+import { DemoFacade } from '../state/demo.facade';
 
 @Component({
   selector: 'app-demo-container',
   templateUrl: './demo-container.component.html',
   styleUrls: ['./demo-container.component.scss'],
 })
-export class DemoContainerComponent {
+export class DemoContainerComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   router = inject(Router);
   route = inject(ActivatedRoute);
-  ds = inject(DemoService);
-  nav = inject(SideNavService);
+  df = inject(DemoFacade);
+  nav = inject(SideNavFacade);
   ls = inject(LoadingService);
   eb = inject(SidePanelService);
 
   title: string = environment.title;
-  demos = this.ds.getItems();
-  selectedComponent = 'Please select a demo';
+  header = 'Please select a demo';
+  demos = this.df.getDemos();
 
   isLoading = false;
 
   sidenavMode = this.nav.getSideNavPosition();
   sidenavVisible = this.nav.getSideNavVisible();
   workbenchMargin = this.sidenavVisible.pipe(
-    map((visible: boolean) => { return visible ? { 'margin-left': '5px' } : {} })
+    map(visible => { return visible ? { 'margin-left': '5px' } : {} })
   );
 
-  currentCMD = this.eb.getCommands()
+  currentCMD = this.eb.getCommands();
   showMdEditor: boolean = false;
-
-  header = this.router.events
-    .pipe(
-      takeUntilDestroyed(this.destroyRef),
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.rootRoute(this.route)),
-      filter((route: ActivatedRoute) => route.outlet === 'primary'),
-      map((route: ActivatedRoute) => route.component != null
-        ? `Component: ${route.component.name.substring(1)}`
-        : 'Please select a demo'),
-      tap((header) => console.log(header)
-      ));
 
   constructor() {
     effect(() => {
@@ -61,6 +49,7 @@ export class DemoContainerComponent {
   }
 
   ngOnInit() {
+    this.df.init();
     this.setComponentMetadata();
   }
 
@@ -72,15 +61,14 @@ export class DemoContainerComponent {
   }
 
   setComponentMetadata() {
-    this.router.events
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter((event) => event instanceof NavigationEnd),
-        map(() => this.rootRoute(this.route)),
-        filter((route: ActivatedRoute) => route.outlet === 'primary')
-      )
+    this.router.events.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.rootRoute(this.route)),
+      filter((route: ActivatedRoute) => route.outlet === 'primary')
+    )
       .subscribe((route: ActivatedRoute) => {
-        this.selectedComponent =
+        this.header =
           route.component != null
             ? `Component: ${route.component
               .toString()

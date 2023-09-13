@@ -52,6 +52,11 @@ mat-toolbar {
   margin-bottom: var(--gap-small);
 }
 
+.mat-drawer-container {
+  background-color: var(--color-fg);
+  color: var(--color-darkfont);
+}
+
 .mat-sidenav-container {
   height: 100%;
 }

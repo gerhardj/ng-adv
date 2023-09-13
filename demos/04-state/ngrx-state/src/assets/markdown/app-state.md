@@ -32,10 +32,8 @@ export const appActions = createActionGroup({
 ```typescript
 export interface State {
   app: AppState;
-  customers: CustomersState
 }
 export const reducers: ActionReducerMap<State> = {
   app: appState.reducer,
-  customers: customerReducer,
 };
 ```

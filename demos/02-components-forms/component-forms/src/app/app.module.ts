@@ -1,7 +1,7 @@
 import {
-  HttpClient,
-  HttpClientModule,
   HTTP_INTERCEPTORS,
+  HttpClient,
+  provideHttpClient
 } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,13 +22,13 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule,
     SharedModule,
     MarkdownModule.forRoot({
       loader: HttpClient,
     }),
   ],
   providers: [
+    provideHttpClient(),
     LoadingService,
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],

@@ -20,29 +20,12 @@ export class DemoListComponent {
   view$ = combineLatest([this.demos$, this.filter$]).pipe(
     map(([demos, filter]) => {
       return filter !== ''
-        ? demos.filter((d) =>
+        ? demos.filter((d: DemoItem) =>
           d.title.toLowerCase().includes(filter.toLowerCase())
         )
         : demos;
     })
   );
-
-  drop(event: CdkDragDrop<DemoItem[]>) {
-    this.demos$.subscribe((arr) => {
-      moveItemInArray(arr, event.previousIndex, event.currentIndex);
-      this.changeSortOrder(arr);
-    });
-  }
-
-  // Throws an err because of immutalble store
-  // Actually you should implement this using an action :-)
-  changeSortOrder(arr: DemoItem[]) {
-    let idx = 0;
-    arr.forEach((item) => {
-      item.sortOrder = idx;
-      idx++;
-    });
-  }
 
   deleteItem(item: DemoItem) {
     this.df.deleteDemo(item);

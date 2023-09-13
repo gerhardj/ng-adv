@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class TakeUntilDestroyedComponent {
   destroyRef = inject(DestroyRef);
+
   name = new FormControl('',
     [Validators.required, Validators.minLength(3)],
     []);

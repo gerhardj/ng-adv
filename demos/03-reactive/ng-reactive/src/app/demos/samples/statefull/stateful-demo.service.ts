@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DemoItem } from '../../demo-base/demo-item.model';
@@ -8,7 +8,9 @@ import { DemoItem } from '../../demo-base/demo-item.model';
   providedIn: 'root',
 })
 export class StatefulDemoService {
-  constructor(private httpClient: HttpClient) {
+  http = inject(HttpClient);
+
+  constructor() {
     this.initData();
   }
 
@@ -17,7 +19,7 @@ export class StatefulDemoService {
   );
 
   private initData() {
-    this.httpClient
+    this.http
       .get<DemoItem[]>(`${environment.api}demos`)
       .subscribe((data) => {
         let trimmed = data.slice(0, 3);

@@ -1,14 +1,16 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { EMPTY, of } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators';
 import { DemoService } from '../demo-base/demo.service';
 import { DemoActions } from './demos.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class DemosEffects {
   actions$ = inject(Actions);
   service = inject(DemoService);
+  router = inject(Router);
 
   loadDemos$ = createEffect(() =>
     this.actions$.pipe(
@@ -55,6 +57,18 @@ export class DemosEffects {
           catchError((err) => of(DemoActions.deleteDemoFailure({ err })))
         )
       )
+    )
+  );
+
+  redirectToError$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DemoActions.redirectToError),
+      exhaustMap(() => {
+        this.router.navigate(['/error']);
+        return EMPTY.pipe(
+          map(() => ({ type: 'Redirected to Error' }))
+        );
+      })
     )
   );
 }

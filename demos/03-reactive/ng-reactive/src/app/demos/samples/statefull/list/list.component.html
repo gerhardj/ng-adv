@@ -5,7 +5,7 @@
   <mat-card-content>
     <div cdkDropList (cdkDropListDropped)="drop($event)" class="list">
       <app-demo-row
-        *ngFor="let d of demos$ | async"
+        *ngFor="let d of vm$ | async"
         [item]="d"
         (onDelete)="deleteItem($event)"
         (onChangeVisibility)="changeVisibility($event)"

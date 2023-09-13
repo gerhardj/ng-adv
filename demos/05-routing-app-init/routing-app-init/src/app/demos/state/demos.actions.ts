@@ -18,5 +18,6 @@ export const DemoActions = createActionGroup({
     deleteDemoFailure: props<{ err: Error }>(),
     setSelected: props<{ item: DemoItem }>(),
     applyFilter: props<{ filter: string }>(),
+    redirectToError: emptyProps(),
   }
 });
