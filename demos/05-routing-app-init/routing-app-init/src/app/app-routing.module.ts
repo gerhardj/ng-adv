@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'skills',
     loadChildren: () =>
       import('./skills/skills.module').then((m) => m.SkillsModule),
-    // canLoad: [authGuard],
+    canLoad: [authGuard],
   },
   {
     path: 'customers',

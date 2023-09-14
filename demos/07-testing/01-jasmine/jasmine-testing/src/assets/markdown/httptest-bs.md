@@ -8,9 +8,15 @@
   providedIn: 'root',
 })
 export class FoodServiceBS {
-  constructor(private httpClient: HttpClient) {
-    this.initData();
+  http = inject(HttpClient);
+
+  constructor() {
+    this.http
+      .get<FoodItem[]>(`${environment.apiUrl}food`)
+      .subscribe((data) => {
+        this.food.next(data);
+      });
   }
-  private items: FoodItem[] = [];
-  private Items: BehaviorSubject<FoodItem[]> = new BehaviorSubject(this.items);
+
+  food: BehaviorSubject<FoodItem[]> = new BehaviorSubject<FoodItem[]>([]);
 ```

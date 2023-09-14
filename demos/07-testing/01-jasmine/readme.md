@@ -33,7 +33,7 @@ npm i jasmine-marbles
 Examine sample tests in `/cypress/e2e/*` and run:
 
 ```
-npm run cypress
+npx cypress open
 ```
 
 > Note: Before running Cypress tests, make sure the app is running in the background.

@@ -1,5 +1,5 @@
-import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EntityDataModule } from '@ngrx/data';
@@ -26,6 +26,8 @@ import { SharedModule } from './shared/shared.module';
 import { metaReducers, reducers } from './state';
 import { retryInterceptor } from './interceptors/retry-interceptor.service';
 import { AuthModule } from './auth/auth.module';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { GlobalErrService } from './error/global-err-handler';
 
 @NgModule({
   declarations: [
@@ -99,15 +101,15 @@ import { AuthModule } from './auth/auth.module';
       deps: [ConfigService],
       multi: true,
     },
-    // {
-    //   provide: ErrorHandler,
-    //   useClass: GlobalErrService,
-    // },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: authInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrService,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: FormatInterceptorService,

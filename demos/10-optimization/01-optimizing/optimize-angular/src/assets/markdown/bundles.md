@@ -1,5 +1,7 @@
 # Optimize Bundles
 
+In order to optimize bundles, we need to analyze them first. There are several tools that can help us with that. At the moment bundle analysis does not support ESBuild.
+
 ## Source Maps Explorer
 
 Install Source Map Explorer:

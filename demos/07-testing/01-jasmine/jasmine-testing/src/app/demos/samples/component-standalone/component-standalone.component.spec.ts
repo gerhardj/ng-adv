@@ -17,6 +17,7 @@ describe('ComponentStandaloneComponent', () => {
   beforeEach(() => {
     spy = jasmine.createSpyObj('SkillsService', ['getSkills']);
     spy.getSkills.and.returnValue(of(skillsdata));
+
     TestBed.overrideComponent(ComponentStandaloneComponent, {
       add: {
         providers: [{ provide: SkillsService, useValue: spy }

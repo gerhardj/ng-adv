@@ -1,7 +1,7 @@
 import { Component, DestroyRef, OnInit, effect, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { SidebarActions } from 'src/app/shared/side-panel/sidebar.actions';
 import { SidePanelService } from 'src/app/shared/side-panel/sidepanel.service';
 import { SideNavFacade } from 'src/app/state/sidenav.facade';
@@ -24,8 +24,18 @@ export class DemoContainerComponent implements OnInit {
   eb = inject(SidePanelService);
 
   title: string = environment.title;
-  header = 'Please select a demo';
   demos = this.df.getDemos();
+  header = this.router.events
+    .pipe(
+      takeUntilDestroyed(this.destroyRef),
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this.rootRoute(this.route)),
+      filter((route: ActivatedRoute) => route.outlet === 'primary'),
+      map((route: ActivatedRoute) => route.component != null
+        ? `Component: ${route.component.name.substring(1)}`
+        : 'Please select a demo'),
+      tap((header) => console.log(header)
+      ));
 
   isLoading = false;
 
@@ -50,7 +60,6 @@ export class DemoContainerComponent implements OnInit {
 
   ngOnInit() {
     this.df.init();
-    this.setComponentMetadata();
   }
 
   rootRoute(route: ActivatedRoute): ActivatedRoute {
@@ -58,22 +67,5 @@ export class DemoContainerComponent implements OnInit {
       route = route.firstChild;
     }
     return route;
-  }
-
-  setComponentMetadata() {
-    this.router.events.pipe(
-      takeUntilDestroyed(this.destroyRef),
-      filter((event) => event instanceof NavigationEnd),
-      map(() => this.rootRoute(this.route)),
-      filter((route: ActivatedRoute) => route.outlet === 'primary')
-    )
-      .subscribe((route: ActivatedRoute) => {
-        this.header =
-          route.component != null
-            ? `Component: ${route.component
-              .toString()
-              .substring(7, route.component.toString().indexOf('{') - 1)}`
-            : '';
-      });
   }
 }

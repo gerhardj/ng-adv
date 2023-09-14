@@ -1,10 +1,11 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[appCapitalize]',
 })
 export class CapitalizeDirective {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  el = inject(ElementRef);
+  renderer = inject(Renderer2);
 
   @HostListener('click') onClick() {
     this.el.nativeElement.style.textTransform === 'uppercase'

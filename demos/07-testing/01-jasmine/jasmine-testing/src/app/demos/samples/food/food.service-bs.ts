@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment.prod';
 })
 export class FoodServiceBS {
   http = inject(HttpClient);
+
   constructor() {
     this.http
       .get<FoodItem[]>(`${environment.apiUrl}food`)

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,11 +8,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  http = inject(HttpClient);
   title = 'ng-config-env';
   apiUrl = environment.apiUrl;
   cfg: any;
-
-  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.http.get(this.apiUrl + '/settings').subscribe((settings) => {
