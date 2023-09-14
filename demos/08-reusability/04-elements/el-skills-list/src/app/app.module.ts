@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { Injector, NgModule, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,11 +16,10 @@ import { createCustomElement } from '@angular/elements';
 import { SkillsListComponent } from './skills-list/skills-list.component';
 @NgModule({
   declarations: [SkillsListComponent],
-  imports: [BrowserModule, FormsModule],
-  entryComponents: [SkillsListComponent],
+  imports: [BrowserModule, FormsModule]
 })
 export class AppModule {
-  constructor(private injector: Injector) { }
+  injector = inject(Injector)
 
   ngDoBootstrap(): void {
     const el = createCustomElement(SkillsListComponent, {

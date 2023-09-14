@@ -16,10 +16,12 @@ describe('Service - HttpTest -FoodService', () => {
       { id: 1, name: 'Pad Thai', rating: 5 },
       { id: 2, name: 'Butter Chicken', rating: 5 },
     ]),
+
       TestBed.configureTestingModule({
         imports: [HttpClientTestingModule],
         providers: [FoodServiceBS],
       });
+
     service = TestBed.inject(FoodServiceBS);
     controller = TestBed.inject(HttpTestingController);
     // setup the service mock

@@ -2,6 +2,8 @@ import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import { authActions } from './auth.actions';
 
+export const fakeToken = 'dffasdhfkjfwqq1452fdsafas34fdsafadfasf55459tewvadf941sfhasdkjfhwkjh';
+
 export interface AuthState {
     user: any;
     token: string | null;
@@ -11,7 +13,7 @@ export interface AuthState {
 
 export const initialState: AuthState = {
     user: null,
-    token: '',
+    token: null,
     authEnabled: environment.authEnabled,
     isPrimeMember: false,
 };
@@ -20,10 +22,18 @@ export const authState = createFeature({
     name: 'auth',
     reducer: createReducer(
         initialState,
-        on(authActions.registerUserSuccess,
-            authActions.logInSuccess, (state, action) => ({
+        on(authActions.setFakeUserAndToken, (state, action) => {
+            return {
+                ...state,
+                user: action.email,
+                token: fakeToken,
+            };
+        }),
+        on(authActions.registerUserSuccess, authActions.logInSuccess,
+            (state, action) => ({
                 ...state,
                 user: action.user,
+                token: action.token,
             })),
         on(authActions.logOutComplete, (state) => ({
             ...state,
@@ -59,13 +69,17 @@ export const authState = createFeature({
             };
         }),
     ),
-    extraSelectors: ({ selectAuthEnabled, selectUser }) => ({
+    extraSelectors: ({ selectAuthEnabled, selectUser, selectToken }) => ({
         selectIsAuthenticated: createSelector(
             selectAuthEnabled,
             selectUser,
             (authEnabled, user) => {
                 return authEnabled == false || user != null;
             }
-        )
+        ),
+        selectAuthResult: createSelector(selectUser, selectToken,
+            (user, token) => {
+                return { user, token };
+            }),
     })
 })

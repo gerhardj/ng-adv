@@ -26,8 +26,8 @@ describe('ComponentWriteComponent', () => {
     const input = fixture.debugElement.query(By.css('input'));
     const el = input.nativeElement;
     flush();
-    expect(el.value).toBe(giro);
 
+    expect(el.value).toBe(giro);
     el.value = whippet;
     el.dispatchEvent(new Event('input'));
     expect(fixture.componentInstance.user.username).toBe(whippet);

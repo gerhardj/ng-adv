@@ -5,10 +5,10 @@ export const authActions = createActionGroup({
   source: 'Auth',
   events: {
     registerUser: props<{ credentials: LoginCredentials }>(),
-    registerUserSuccess: props<{ user: any }>(),
+    registerUserSuccess: props<{ user: any, token: string }>(),
     registerUserFailure: props<{ err: Error }>(),
     logIn: props<{ username: string, password: string }>(),
-    logInSuccess: props<{ user: any }>(),
+    logInSuccess: props<{ user: any, token: string }>(),
     logInFailure: props<{ err: Error }>(),
     logOut: emptyProps(),
     logOutComplete: emptyProps(),
@@ -18,5 +18,6 @@ export const authActions = createActionGroup({
     redirectToError: emptyProps(),
     togglePrimeMember: emptyProps(),
     toggleLoggedIn: emptyProps(),
+    setFakeUserAndToken: props<{ email: string }>(),
   }
 });
