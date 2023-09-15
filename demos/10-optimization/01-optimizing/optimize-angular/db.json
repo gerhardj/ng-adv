@@ -5,12 +5,12 @@
       "title": "Lighthose"
     },
     {
-      "url": "debug-statements",
-      "title": "Debug Statements"
+      "url": "bundles",
+      "title": "Bundles"
     },
     {
-      "url": "bundles",
-      "title": "Bundle Analyzer"
+      "url": "debug-statements",
+      "title": "Debug Statements"
     },
     {
       "url": "logger",

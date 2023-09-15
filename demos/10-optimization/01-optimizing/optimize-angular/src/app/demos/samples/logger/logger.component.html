@@ -3,7 +3,8 @@
   <mat-card-header>
     <mat-card-title>Logger</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <button mat-raised-button (click)="log()" color="accent">Log using ngx-logger</button>
+  <mat-card-content column>
+    <button mat-raised-button (click)="logNgx()" color="accent">Log using ngx-logger</button>
+    <button mat-raised-button (click)="logAppInsights()" color="accent">Log to App Insights</button>
   </mat-card-content>
 </mat-card>

@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { AILoggerService } from 'src/app/shared/logging/ailogger.service';
 
 @Component({
   selector: 'app-logger',
   templateUrl: './logger.component.html',
   styleUrls: ['./logger.component.scss']
 })
-export class LoggerComponent implements OnInit {
-  constructor(private logger: NGXLogger) { }
+export class LoggerComponent {
+  ngxLogger = inject(NGXLogger);
+  appInsights = inject(AILoggerService);
 
-  ngOnInit() { }
+  logNgx() {
+    this.ngxLogger.debug('Entering LoggerComponent');
+    this.ngxLogger.info('Multiple', 'Argument', 'Support');
+    this.ngxLogger.error('Error', 'Error Details');
+  }
 
-  log() {
-    this.logger.debug('Entering LoggerComponent');
-    this.logger.info('Multiple', 'Argument', 'Support');
-    this.logger.error('Error', 'Error Details');
+  logAppInsights() {
+    this.appInsights.logEvent('LoggerComponent', { name: 'LoggerComponent' });
   }
 }
